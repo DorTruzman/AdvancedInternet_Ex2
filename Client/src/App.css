@@ -1,4 +1,5 @@
 .store {
+  margin-top: 2em;
   display: flex;
   direction: rtl;
   flex-direction: column;

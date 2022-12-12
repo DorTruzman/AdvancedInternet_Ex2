@@ -1,5 +1,7 @@
 import React from "react";
 import "./Product.css";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 function Product({
   name,
@@ -12,34 +14,31 @@ function Product({
   disableCartButtons,
 }) {
   return (
-    <div className="product">
-      <div>
-        <img className="productImg" alt="Product" src={image} />
-      </div>
-      <div className="productDetails">
-        <div>{name}</div>
-        <div>{price + " ₪"}</div>
-        <div className="description">{description}</div>
-        {!disableCartButtons &&
-          (!isInCart ? (
-            <button
+    <>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img
+          variant="top"
+          src={image}
+          style={{ width: 200, height: 200 }}
+        />
+        <Card.Body>
+          <Card.Title>
+            {name} - {price + " ₪"}
+          </Card.Title>
+          <Card.Text>{description}</Card.Text>
+          {!disableCartButtons && (
+            <Button
               onClick={() => {
-                addToCart();
+                !isInCart ? addToCart() : removeFromCart();
               }}
+              variant={!isInCart ? "primary" : "secondary"}
             >
-              +
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                removeFromCart();
-              }}
-            >
-              X
-            </button>
-          ))}
-      </div>
-    </div>
+              {!isInCart ? "הוסף לסל" : "מחק מהסל"}
+            </Button>
+          )}
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 
