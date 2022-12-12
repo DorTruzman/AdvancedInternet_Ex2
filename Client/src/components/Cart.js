@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { createEntity } from "../services/fetchService";
 import ProductsList from "./ProductsList";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function Cart({ products, cart, addToCart, removeFromCart }) {
   const [name, setName] = useState();
@@ -36,23 +38,27 @@ function Cart({ products, cart, addToCart, removeFromCart }) {
         {Object.values(cart).reduce((prev, curr) => prev + curr.price, 0)} ₪
       </div>
       <div>
-        <form>
-          <input
+        <Form style={{ textAlign: "center", margin: 10 }}>
+          <Form.Control
+            className="mb-3"
             value={name}
             placeholder="שם מלא"
             onChange={(e) => setName(e.target.value)}
-          ></input>
-          <input
+          ></Form.Control>
+          <Form.Control
+            className="mb-3"
             value={phone}
             placeholder="מספר טלפון"
             onChange={(e) => setPhone(e.target.value)}
-          ></input>
-          <input
+          ></Form.Control>
+          <Form.Control
+            className="mb-3"
             value={address}
             placeholder="כתובת למשלוח"
             onChange={(e) => setAddress(e.target.value)}
-          ></input>
-          <button
+          ></Form.Control>
+          <Button
+            className="mb-3"
             disabled={!name || !phone || !address}
             onClick={(e) => {
               e.preventDefault();
@@ -60,8 +66,8 @@ function Cart({ products, cart, addToCart, removeFromCart }) {
             }}
           >
             שלח
-          </button>
-        </form>
+          </Button>
+        </Form>
       </div>
     </>
   );

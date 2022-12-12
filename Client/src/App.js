@@ -57,12 +57,16 @@ function App() {
         ) : (
           <>
             <h1>המוצרים שלנו</h1>
-            <ProductsList
-              products={products}
-              cart={cart}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-            />
+            {products.length ? (
+              <ProductsList
+                products={products}
+                cart={cart}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+              />
+            ) : (
+              <h5>אין מוצרים להצגה</h5>
+            )}
           </>
         )}
       </div>
